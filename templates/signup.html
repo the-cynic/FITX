@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+  <title>Fitx | SignUp</title>
+</head>
+
+<body>
+  <div class="box1">
+    <div class="rectangle">
+      <form class="container" method="POST">
+        <div class="top">
+          <br>
+          <span>Do not have an account?</span>
+          <header>Sign Up</header>
+          <br>
+        </div>
+        <div class="input-field">
+          <input type="text" class="input" name="Name" placeholder="Name">
+        </div>
+        <br>
+        <div class="input-field">
+          <input type="email" class="input" name="Email" placeholder="Email">
+        </div>
+        <br>
+        <div class="input-field">
+          <input type="password" class="input" name="Passw" placeholder="Password">
+        </div>
+        <br>
+        <button type="submit" class="cta1"><b>CREATE ACCOUNT</b></button>
+        <br>
+        <div class="three">
+          <a class="cta2" href="{{url_for('login')}}">Already have an account? <b class="bold">
+              Login</b></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

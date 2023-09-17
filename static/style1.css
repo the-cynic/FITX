@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap');
+
+* {
+  font-family: 'poppins', sans-serif;
+}
+
+body {
+  background-image: url("pbg1.jpg");
+  background-size: cover;
+  background-position: centre;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+}
+
+.box {
+  background-color: #000;
+  border-radius: 12px;
+  border: 2px solid #c2c6ff;
+  height: 375px;
+  width: 500px;
+  margin-left: 480px;
+  margin-top: 90px;
+}
+
+.box1 {
+  background-color: #000;
+  border-radius: 12px;
+  border: 2px solid #c2c6ff;
+  height: 425px;
+  width: 500px;
+  margin-left: 480px;
+  margin-top: 70px;
+}
+
+.rectangle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  flex-direction: column;
+  padding: 0 15px 0 15px;
+
+}
+
+span {
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 10px 0;
+}
+
+header {
+  color: #ccef7b;
+  font-size: 40px;
+  font-family: 'Vina Sans', cursive;
+  display: flex;
+  justify-content: center;
+}
+
+.input-field .input {
+  height: 45px;
+  width: 87%;
+  border: none;
+  border-radius: 15px;
+  background-color: #d1d4ff;
+  color: black;
+  font-size: 15px;
+  padding: 0 0 0 45px;
+}
+
+.cta1 {
+  border-radius: 15px;
+  border: none;
+  font-size: 15px;
+  height: 45px;
+  color: black;
+  background-color: #ccef7b;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.cta1:hover {
+  background-color: #9cde02;
+}
+
+.cta2 {
+  color: #fff;
+  text-decoration: none;
+}
+
+.three {
+  text-align: center;
+}
+
+.bold {
+  color: #c2c6ff;
+}
