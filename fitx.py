@@ -28,6 +28,7 @@ def signup():
     else:
       if newuser(name,email,passw):
         flash('Account created successfully!')
+        
       else:
         flash('Email already registered!')
   return render_template("signup.html")
