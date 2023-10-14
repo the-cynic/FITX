@@ -12,6 +12,17 @@ def newuser(name,email,passw):
     qs="insert into users(name,email,password) values('{}','{}','{}')".format(name,email,passw)
     cursor.execute(qs)
     con.commit()
-    con.close()
     return True
+  return False
+
+def exuser(email):
+  if con.is_connected():
+    cursor=con.cursor()
+    cursor.execute("select email,password from users")
+    lst=cursor.fetchall()
+    for i in lst:
+      if i[0]==email:
+        return i[1]
+    else:
+      return ""
   return False
