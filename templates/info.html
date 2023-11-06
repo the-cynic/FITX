@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styleform.css">
+  <title>Fitx | Info</title>
+</head>
+
+<body>
+    <h1 class="hd">Tell us more about you</h1>
+
+    <form id="form" class="form" method="POST">
+       <div class="form-control">
+            <label for="role" id="label-role">
+               <b>Age</b> 
+            </label>
+
+            <select name="Age" id="role">
+                <option value="Less than 18">Less than 18</option>
+                <option value="18-25">18-25</option>
+                <option value="26-40">26-40</option>
+                <option value="41-60">41-60</option>
+                <option value="Above 60">Above 60</option>
+            </select>
+        </div>
+
+       <div class="form-control">
+            <label for="role" id="label-role">
+               <b> Gender</b>
+            </label>
+
+            <select name="Gender" id="role">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Non binary">
+                    Non binary
+                </option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="role" id="label-role">
+              <b>Usual Way of Life</b>
+            </label>
+
+            <select name="Life" id="role">
+                <option value="Sedentary">Sedentary Lifestyle</option>
+                <option value="Moderately Active">Moderately Active Lifestyle</option>
+                <option value="Active">Active Lifestyle</option>
+            </select>
+           <br> 
+        <div class="form-control">
+            <label for="Height" id="label-name">
+               <b> Height(in m)</b>
+            </label>
+
+            <input type="text"
+                   id="height"
+                   name="Height"
+                   placeholder="Enter your height" />
+        </div>
+       <div class="form-control">
+            <label for="Weight" id="label-name">
+               <b> Weight(in kg)</b>
+            </label>
+
+            <input type="text"
+                   id="weight"
+                   name="Weight"
+                   placeholder="Enter your weight" />
+        </div>
+       <div class="form-control">
+            <label for="role" id="label-role">
+               <b>Any Ailments</b>
+            </label>
+
+          <select name="Disease" id="role">
+              <option value="Diabetes">Diabetes</option>
+              <option value="Cardiovascular condition">Cardiovascular condition</option>
+              <option value="Respiratory problems">Respiratory problems</option>
+              <option value="None">None</option>
+          </select>
+       </div>
+            
+
+        <div class="form-control">
+            <label><b>Aim (Check all that apply)</b></label>
+            <label for="inp-1">
+                <input type="checkbox"
+                       name="Weightloss">Achieving and maintaining a healthy body weight</input></label>
+            <label for="inp-2">
+                <input type="checkbox"
+                       name="Flexibility">Increasing flexibility and mobility</input></label>
+            <label for="inp-3">
+                <input type="checkbox"
+                       name="Muscle Building">Building muscle strength and endurance</input></label>
+            <label for="inp-4">
+                <input type="checkbox"
+                       name="Cardiovascular Fitness">Improving cardiovascular fitness</input></label>
+
+
+        </div>
+          
+        <button type="submit" value="submit">
+            SUBMIT
+        </button>
+    </form>
+</body>
+</html>

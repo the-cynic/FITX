@@ -12,17 +12,28 @@ def newuser(name,email,passw):
     qs="insert into users(name,email,password) values('{}','{}','{}')".format(name,email,passw)
     cursor.execute(qs)
     con.commit()
-    return True
+    qs="select id from users where email='{}'".format(email)
+    cursor.execute(qs)
+    lst=cursor.fetchall()
+    return lst[0][0]
   return False
 
 def exuser(email):
   if con.is_connected():
     cursor=con.cursor()
-    cursor.execute("select email,password from users")
+    cursor.execute("select name,password from users where email='{}'".format(email))
     lst=cursor.fetchall()
-    for i in lst:
-      if i[0]==email:
-        return i[1]
+    if lst[0]:
+        return lst[0][1],lst[0][0]
     else:
-      return ""
+      return "",""
+  return False,False
+
+def storeinfo(uid,age,gen,life,ht,wt,dis,aim,bmi,status):
+  if con.is_connected():
+    cursor=con.cursor()
+    qs="insert into info values({},'{}','{}','{}',{},{},'{}','{}',{},'{}')".format(uid,age,gen,life,ht,wt,dis,aim,bmi,status)
+    cursor.execute(qs)
+    con.commit()
+    return True
   return False

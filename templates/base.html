@@ -3,10 +3,39 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>{% block title %}Fitx | Dashboard{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylex.css') }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<script src="https://kit.fontawesome.com/c32e1c9289.js" crossorigin="anonymous"></script>-->
 </head>
 
-<body>
-  
-</body>
+  <body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <img src="static/logox.png" alt="FITX">
+            <ul class="navbar">
+                <li class="{{h}}"><a href="/home" ><i class="fas fa-chart-line"></i>DASHBOARD</a></li>
+                <li class="{{w}}"><a href="/workouts"><i class="fas fa-dumbbell"></i>WORKOUT LIBRARY</a></li>
+                <li class="{{d}}"><a href="/diets"><i class="fas fa-utensils"></i>DIET PLANS</a></li>
+          <li class="{{i}}"><a href="/inspiration"><i class="fas fa-meteor"></i>INSPIRATION</a></li>
+          <li class="{{s}}"><a href="/settings"><i class="fas fa-gear"></i>SETTINGS</a></li>
+        </ul>
+          <br><br><br><br><br>
+          <div class="profile" href="#"> 
+            <div class="pfp"></div>
+            <div class="pdata">
+              <p><b>{{user}}</b></p>
+              <p class="sub">Member</p>
+            </div>
+            <a href="/logout"><i class="fas fa-arrow-right-to-bracket" title="Logout"></i></a>
+          </div>
+        </div>
+        <div class="main_content">
+            <div class="header">{%block header%}{%endblock%}</div>  
+            <div class="info"></div>
+        {%block content%}
+          {%endblock%}
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@500&family=Homemade+Apple&family=Vina+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -23,7 +24,7 @@ a {
 }
 
 body {
-  background-color: #403b3b;
+  background-color: #000;
   background-image: url("px1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
