@@ -160,14 +160,17 @@ body{
   border-radius:5px;
 }
 
-.sec1{
-  background-color:#c2c6ff;
+.sec3{
+  background-image:url("p.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
   color:#000;
   font-size:20px;
   border-radius:5px;
   margin-left:20px;
   margin-right:20px;
   margin-bottom: 20px;
+  text-align:center;
 }
 
 .sec2{
