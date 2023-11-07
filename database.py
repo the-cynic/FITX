@@ -24,7 +24,7 @@ def exuser(email):
     cursor=con.cursor()
     cursor.execute("select name,password,id from users where email='{}'".format(email))
     lst=cursor.fetchall()
-    if lst[0]:
+    if lst:
         return lst[0][1],lst[0][0],lst[0][2]
     else:
       return "","",""

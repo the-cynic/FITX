@@ -18,7 +18,7 @@ def login():
     email = str(request.form.get("Email"))
     passw = str(request.form.get("Passw"))
     spass, name,id = exuser(email)
-    print(email, passw, spass)
+    print(email,passw,name)
     if spass:
       if spass == passw:
         session["email"]=email
