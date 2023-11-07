@@ -101,7 +101,6 @@ def home():
 def workouts():
   if session:
     lst=getworkout()
-    print(lst)
     if lst:
       return render_template("workouts.html", user=session["user"].split()[0], w="spotlight", lst=lst)
   else:

@@ -3,15 +3,12 @@
 {%block header%}<span>Workout</span> Library{%endblock%}
 
 {%block content%}
-{%for i in range(len(lst)) %}
-<div class="sec2">
-<section class="holder">
-<p class="heading">{%block hding%}{{i}}{%endblock%}</p>
-<p class="info">
-This is a structured eating plan designed to help individuals shed excess pounds and achieve a healthier body weight. It typically involves calorie reduction, portion control, and the selection of nutritious foods to create a sustainable calorie deficit. This introduction outlines the primary goal and methods of a weight loss diet.
-</p><br>
-<a href="/workoutdetails?workout=1"><button class= "xbutton">VIEW WORKOUT PLAN</button></a>
-</section>
-</div>
-{%endfor%}
+  {% for i in lst %}
+    <div class="sec2">
+      <section class="holder">
+        <p class="heading">{{ i.upper() }}</p><br><br>
+        <a href="/workoutdetails?workout={{lst.index(i)+1}}"><button class= "xbutton">VIEW WORKOUT PLAN</button></a>
+      </section>
+    </div>
+  {%endfor%}
 {%endblock%}
