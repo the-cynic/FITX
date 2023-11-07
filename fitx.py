@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, session
-from database import newuser, exuser, storeinfo, getinfo, getworkout, updateinfo, updatepass, deluser
+from database import newuser, exuser, storeinfo, getinfo, getworkout, updateinfo, updatepass, deluser, findworkout
 
 app = Flask(__name__)
 app.secret_key = "ayu~7-@098jir c7^wiug"
@@ -12,6 +12,8 @@ def welcome():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+  if session:
+    return redirect(r"/home")
   if request.method == 'POST':
     email = str(request.form.get("Email"))
     passw = str(request.form.get("Passw"))
@@ -98,8 +100,20 @@ def home():
 @app.route("/workouts")
 def workouts():
   if session:
-    link=getworkout()
-    return render_template("workouts.html", user=session["user"].split()[0], w="spotlight", link=link)
+    lst=getworkout()
+    print(lst)
+    if lst:
+      return render_template("workouts.html", user=session["user"].split()[0], w="spotlight", lst=lst)
+  else:
+    return redirect(r"/login")
+
+@app.route("/workoutdetails")
+def workoutdetails():
+  if session:
+    wid=request.args["workout"]
+    lst,wname=findworkout(wid)
+    if lst:
+      return render_template("workoutdetails.html", user=session["user"].split()[0], w="spotlight", lst=lst, wname=wname)
   else:
     return redirect(r"/login")
 
@@ -107,6 +121,14 @@ def workouts():
 def diets():
   if session:
     return render_template("diets.html", user=session["user"].split()[0], d="spotlight")
+  else:
+    return redirect(r"/login")
+
+@app.route("/dietdetails")
+def dietdetails():
+  if session:
+    diet=request.args['diet']
+    return render_template("dietdetails.html", user=session["user"].split()[0], d="spotlight", diet=diet)
   else:
     return redirect(r"/login")
 

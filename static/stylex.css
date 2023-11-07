@@ -145,19 +145,24 @@ body{
 }
 
 .main_content .info{
-  color: #717171;
+  color: #000;
   padding:10px;
-  border-top:2px solid #c2c6ff;
+  border-top:2px solid #000;
 }
 
 .info div{
   margin-bottom: 20px;
 }
 
+.holder{
+  background-color:rgba(255,255,255,0.6);
+  padding:20px;
+  border-radius:5px;
+}
+
 .sec1{
   background-color:#c2c6ff;
   color:#000;
-  padding:20px;
   font-size:20px;
   border-radius:5px;
   margin-left:20px;
@@ -166,9 +171,22 @@ body{
 }
 
 .sec2{
-  background-color:#ccef7b;
+  background-image:url("diet.png");
+  background-size:cover;
+  background-repeat:no-repeat;
   color:#000;
+  font-size:20px;
+  border-radius:5px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom: 20px;
+  text-align:center;
+}
+
+.box{
   padding:20px;
+  color:#000;
+  background-color:#c2c6ff;
   font-size:20px;
   border-radius:5px;
   margin-left:20px;
@@ -177,6 +195,7 @@ body{
 }
 
 .heading{
+  font-family:'Playfair';
   font-size:25px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -185,7 +204,6 @@ body{
 .buttons{
   margin:100px;
   margin-top:20px;
-  margin-bottom:10px;
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -195,7 +213,7 @@ button{
   padding:10px;
   border-radius:5px;
   height:40px;
-  width:250px;
+  width:210px;
   background-color:#ccef7b;
   color:#000
   transition:0.5s ease;
@@ -212,4 +230,45 @@ button:hover{
 
 .impbutton:hover{
   background-color: #fb2d2d;
+}
+
+.xbutton{
+  background-color:#000;
+  color:#fff;
+  width:350px;
+}
+
+.xbutton:hover{
+  background-color:#000;
+  border:2px solid #ccef7b;
+}
+
+table, th, td {
+  border:1px solid black;
+}
+
+.font1{
+   font-family:Playfair;
+   font-size: 40px;
+   margin-bottom:20px;
+}
+
+.tabled {
+  text-align:center ;
+  padding: 30px; 
+}
+
+.exercise{
+  border:2px solid #000;
+  background:rgba(255,255,255,0.7);
+  border-radius:5px;
+  padding:10px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.labeltext{
+  margin-top:15px;
 }

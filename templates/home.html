@@ -2,13 +2,16 @@
 {%block title%}Fitx | Dashboard{%endblock%}
 {%block header%}<span>Dash</span>Board{%endblock%}
 {%block content%}
-<div class="sec1">
-  <p class="heading">Welcome to your dashboard, {{user.capitalize()}}! Here are some tips for you:- </p><br>
-  <p> <b>>></b> <b>Drink water!</b> Believe it or not, being dehydrated can substantially hinder your fitness progress </p>
-  <p> <b>>></b> Remember to <b>eat healthy</b>. It is just as important as exercising. </p>
+<div class="box">
+<div class="holder">
+  <p>Welcome to your dashboard, {{user.capitalize()}}!</p>
+  <p></p>
 </div>
-<div class="sec2">
-    <p class="heading"> STATUS CARD</p><br>
+</div>
+<div class="box">
+<div class="holder">
+    <p class="heading"> STATUS CARD</p>
+  <div class="info">
     <p class="tip"><b>NAME: </b>{{user.capitalize()}} </p>
     <p class="tip"><b>AGE: </b>{{info[0]}} </p>
     <p class="tip"><b>GENDER: </b>{{info[1]}} </p>
@@ -19,25 +22,32 @@
     <p class="ti"><b>AILMENTS: </b>{{info[5]}}</p>
     <p class="tip"><b>AIMS: </b>{{info[6]}} </p><br>
     <p class="tip"><b>OVERALL HEALTH PREDICTION: {{info[8]}}</b></p>
+  </div>
+</div>
 </div>
 
-<div class="sec1">
-  <p class="heading"> SOME SUGGESTIONS FOR YOU</p><br>
-  <p class="tip"> <b>>></b> Try to get up and <b>take short strolls</b> frequently in between work. A little cardio goes a long way! </p>
+<div class="box">
+<div class="holder">
+  <p class="heading"> SOME SUGGESTIONS FOR YOU</p>
+  <div class="info">
+  <p class="tip"><b>●</b> <b>Drink water!</b> Believe it or not, being dehydrated can substantially hinder your fitness progress </p><br>
+  <p class="tip"><b>●</b> Try to get up and <b>take short strolls</b> frequently in between work. A little cardio goes a long way! </p><br>
   {%if info[5]=="Diabetes"%}
-  <p class="tip"> <b>>></b> Weight loss workouts and diets will help kill that <b>diabetis fatigue!</b> </p>
+  <p class="tip"><b>●</b> Weight loss workouts and diets will help kill that <b>diabetis fatigue!</b> </p> <br>
   {%endif%}
   {%if info[5]=="Cardiovascular condition"%}
-  <p class="tip"> <b>>></b> Sweat out all the fear and stress with some cardio! Yohoo! </p>
+  <p class="tip"><b>●</b> Sweat out all the fear and stress with some cardio! Yohoo! </p><br>
   {%endif%}
   {%if info[5]=="Respiratory problems"%}
-  <p class="tip"> <b>>></b> Know your body! Don't feel guilty about taking extra breaks or switching to low impact if <b>breathing problems</b> occur. </p>
+  <p class="tip"><b>●</b> Know your body! Don't feel guilty about taking extra breaks or switching to low impact if <b>breathing problems</b> occur. </p> <br>
   {%endif%}
   {%if info[8]=="Overweight" or info[8]=="Obese"%}
-  <p class="tip"> <b>>></b> Let's bring your <b>BMI</b> down to normal levels with a healthy diet and some exercises. </
+  <p class="tip"><b>●</b> Let's bring your <b>BMI</b> down to normal levels with a healthy diet and some exercises. </p>
   {%endif%}
   {%if info[8]=="Underweight"%}
-  <p class="tip"> <b>>></b> Let's help you build some muscles and pull up your BMI to healthy ranges</p>
+  <p class="tip"><b>●</b> Let's help you build some muscles and pull up your BMI to healthy ranges</p>
   {%endif%}  
+  </div>
+</div>
 </div>
 {%endblock%}

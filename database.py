@@ -1,3 +1,4 @@
+from os import lstat
 import mysql.connector as sl
 con=sl.connect(host='fitx-thecynic-ecc2.aivencloud.com',user='avnadmin',passwd='AVNS_EObxd5cqJt_eLT6DqG9',port=26647,database='defaultdb')
 
@@ -71,13 +72,29 @@ def updatepass(uid,npass):
 def getworkout():
   if con.is_connected():
     cursor=con.cursor()
-    cursor.execute("select gif_link from exercises where exid=1")
+    cursor.execute("select Wname from workouts")
     lst=cursor.fetchall()
+    wnames=[]
     if lst:
-      return lst[0][0]
+      for i in lst:
+        wnames.append(i[0])
+      return wnames
     else:
       return False
   return False
+
+def findworkout(wid):
+  if con.is_connected():
+    cursor=con.cursor()
+    cursor.execute("select exname,gif_link from wplans natural join exercises where wid={}".format(wid))
+    lst=cursor.fetchall()
+    cursor.execute("select wname from workouts where wid={}".format(wid))
+    wname=cursor.fetchall()[0][0]
+    if lst:
+      return lst,wname
+    else:
+      return False,False
+  return False,False
 
 def deluser(uid):
   if con.is_connected():

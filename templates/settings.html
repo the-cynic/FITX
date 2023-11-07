@@ -2,8 +2,10 @@
 {%block title%}Fitx | Settings{%endblock%}
 {%block header%}<span>Sett</span>ings{%endblock%}
 {%block content%}
-<div class="sec1">
-  <div class="heading">ACCOUNT INFORMATION</div><br>
+<div class="box">
+  <div class="holder">
+  <div class="heading">ACCOUNT INFORMATION</div>
+  <div class="info">
   <p class="tip"><b>NAME: </b>{{user.capitalize()}} </p>
   <p class="tip"><b>EMAIL: </b>{{email}}</p></b>
   <p class="tip"><b>PASSWORD: ********</b></p>
@@ -18,6 +20,8 @@
     <a href="/changeinfo"><button type="button">Edit Information</button></a>
     <a href="/changepass"><button type="button">Change Password</button></a>
     <a href="/delacc"><button type="button" class="impbutton">Delete Account</button></a>
+  </div>
+  </div>
   </div>
 </div>
 {%endblock%}
