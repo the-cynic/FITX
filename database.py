@@ -78,3 +78,12 @@ def getworkout():
     else:
       return False
   return False
+
+def deluser(uid):
+  if con.is_connected():
+    cursor=con.cursor()
+    cursor.execute("delete from info where id={}".format(uid))
+    cursor.execute("delete from users where id={}".format(uid))
+    con.commit()
+    return True
+  return False

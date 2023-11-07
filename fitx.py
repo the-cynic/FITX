@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, session
-from database import newuser, exuser, storeinfo, getinfo, getworkout, updateinfo, updatepass
+from database import newuser, exuser, storeinfo, getinfo, getworkout, updateinfo, updatepass, deluser
 
 app = Flask(__name__)
 app.secret_key = "ayu~7-@098jir c7^wiug"
@@ -15,7 +15,6 @@ def login():
   if request.method == 'POST':
     email = str(request.form.get("Email"))
     passw = str(request.form.get("Passw"))
-    global uid
     spass, name,id = exuser(email)
     print(email, passw, spass)
     if spass:
@@ -153,8 +152,8 @@ def changeinfo():
 def changepass():
   if session:
     if request.method == 'POST':
-      oldpass=request.form["OldPass"]
-      newpass=request.form["NewPass"]
+      oldpass=str(request.form["OldPass"])
+      newpass=str(request.form["NewPass"])
       if oldpass==session["pass"]:
         if updatepass(session["id"],newpass):
           session["pass"]=newpass
@@ -167,6 +166,22 @@ def changepass():
   else:
     return redirect(r"/login")
 
+@app.route("/delacc",methods=['GET','POST'])
+def delacc():
+  if session:
+    if request.method == 'POST':
+      email = str(request.form.get("Email"))
+      passw = str(request.form.get("Passw"))
+      if email == session["email"] and passw == session["pass"]:
+        if deluser(session["id"]):
+          return redirect("/logout")
+        else:
+          flash("Could not delete account! Try again.")
+      else:
+        flash("Wrong Email or Password! Try again",'error')
+    return render_template("delacc.html")
+  else:
+    return redirect(r"/login")
 
 @app.route("/logout")
 def logout():
