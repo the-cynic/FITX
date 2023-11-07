@@ -21,13 +21,13 @@ def newuser(name,email,passw):
 def exuser(email):
   if con.is_connected():
     cursor=con.cursor()
-    cursor.execute("select name,password from users where email='{}'".format(email))
+    cursor.execute("select name,password,id from users where email='{}'".format(email))
     lst=cursor.fetchall()
     if lst[0]:
-        return lst[0][1],lst[0][0]
+        return lst[0][1],lst[0][0],lst[0][2]
     else:
-      return "",""
-  return False,False
+      return "","",""
+  return False,False,False
 
 def storeinfo(uid,age,gen,life,ht,wt,dis,aim,bmi,status):
   if con.is_connected():
@@ -35,5 +35,46 @@ def storeinfo(uid,age,gen,life,ht,wt,dis,aim,bmi,status):
     qs="insert into info values({},'{}','{}','{}',{},{},'{}','{}',{},'{}')".format(uid,age,gen,life,ht,wt,dis,aim,bmi,status)
     cursor.execute(qs)
     con.commit()
+
+def updateinfo(uid,age,gen,life,ht,wt,dis,aim,bmi,status):
+  if con.is_connected():
+    cursor=con.cursor()
+    qs="update info set age='{}',gender='{}',life='{}',height={},weight={},disease='{}',aim='{}',bmi={}, status='{}' where id={}".format(age,gen,life,ht,wt,dis,aim,bmi,status,uid)
+    cursor.execute(qs)
+    con.commit()
     return True
+  else:
+    return False
+  return False
+
+def getinfo(uid):
+  if con.is_connected():
+    cursor=con.cursor()
+    cursor.execute("select age,gender,life,height,weight,disease,aim,bmi,status from info where id={}".format(uid))
+    lst=cursor.fetchall()
+    if lst:
+      return lst[0]
+    else:
+      return False
+  return False
+
+def updatepass(uid,npass):
+  if con.is_connected():
+    cursor=con.cursor()
+    qs="update users set password='{}' where id={}".format(npass,uid)
+    cursor.execute(qs)
+    con.commit()
+    return True
+  else:
+    return False
+
+def getworkout():
+  if con.is_connected():
+    cursor=con.cursor()
+    cursor.execute("select gif_link from exercises where exid=1")
+    lst=cursor.fetchall()
+    if lst:
+      return lst[0][0]
+    else:
+      return False
   return False

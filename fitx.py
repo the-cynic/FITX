@@ -1,27 +1,29 @@
-from flask import Flask, render_template, request, redirect, flash
-from database import newuser, exuser, storeinfo
+from flask import Flask, render_template, request, redirect, flash, session
+from database import newuser, exuser, storeinfo, getinfo, getworkout, updateinfo, updatepass
 
 app = Flask(__name__)
 app.secret_key = "ayu~7-@098jir c7^wiug"
-userin = ""
-uid=0
 
 @app.route("/")
 def welcome():
   return render_template("landpg.html")
 
+#authentication procedures
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
     email = str(request.form.get("Email"))
     passw = str(request.form.get("Passw"))
-    spass, name = exuser(email)
+    global uid
+    spass, name,id = exuser(email)
     print(email, passw, spass)
     if spass:
       if spass == passw:
-        global userin
-        userin=name
+        session["email"]=email
+        session["user"]=name
+        session["id"]=id
+        session["pass"]=passw
         return redirect(r"/home")
       else:
         flash("Invalid Password", 'error')
@@ -43,14 +45,14 @@ def signup():
     elif len(passw) < 8:
       flash('Password must be 8 characters or more!', 'error')
     else:
-      global uid
       uid=newuser(name, email, passw)
       if uid:
-        global userin
-        userin=name
-        return redirect("/info")
+        session["id"]=uid
+        session["user"]=name
+        session["email"]=email
+        session["pass"]=passw
+        return redirect(r"/info")
       else:
-        uid=0
         flash('Email already registered! Use another email or log in!',
               'error')
   return render_template("signup.html")
@@ -79,52 +81,99 @@ def info():
     for i in list(request.form.keys())[6:]:
       aim=aim+i+","
     aim=aim.rstrip(",")
-    storeinfo(uid,age,gen,life,ht,wt,dis,aim,bmi,status)
+    storeinfo(session["id"],age,gen,life,ht,wt,dis,aim,bmi,status)
     return redirect("/home")
-  return render_template("info.html")
+  return render_template("info.html", title="Fitx | Info", hd="Tell us more about you!", comm="SUBMIT" )
+
+#main pages
 
 @app.route("/home")
 def home():
-  if userin:
-    return render_template("home.html", user=userin.split()[0], h="spotlight")
+  if session:
+    lst=getinfo(session["id"])
+    return render_template("home.html", user=session["user"].split()[0], h="spotlight", info=lst)
   else:
     return redirect(r"/login")
 
 
 @app.route("/workouts")
 def workouts():
-  if userin:
-    return render_template("workouts.html", user=userin.split()[0], w="spotlight")
+  if session:
+    link=getworkout()
+    return render_template("workouts.html", user=session["user"].split()[0], w="spotlight", link=link)
   else:
     return redirect(r"/login")
 
 @app.route("/diets")
 def diets():
-  if userin:
-    return render_template("diets.html", user=userin.split()[0], d="spotlight")
-  else:
-    return redirect(r"/login")
-
-@app.route("/inspiration")
-def inspiration():
-  if userin:
-    return render_template("inspiration.html", user=userin.split()[0], i="spotlight")
+  if session:
+    return render_template("diets.html", user=session["user"].split()[0], d="spotlight")
   else:
     return redirect(r"/login")
 
 @app.route("/settings")
 def settings():
-  if userin:
-    return render_template("settings.html", user=userin.split()[0], s="spotlight")
+  if session:
+    lst=getinfo(session["id"])
+    return render_template("settings.html", user=session["user"].split()[0], s="spotlight", info=lst, email=session["email"])
   else:
     return redirect(r"/login")
 
+@app.route("/changeinfo", methods=['GET', 'POST'])
+def changeinfo():
+  if session:
+    if request.method == 'POST':
+      print(request.form)
+      age=request.form["Age"]
+      gen=request.form["Gender"]
+      life=request.form["Life"]
+      ht=float(request.form["Height"])
+      wt=float(request.form["Weight"])
+      dis=request.form["Disease"]
+      bmi=wt/(ht*ht)
+      if bmi<18.5:
+        status="Underweight"
+      elif bmi<25:
+        status= "Normal"
+      elif bmi<30:
+        status="Overweight"
+      else:
+        status="Obese"
+      aim=""
+      for i in list(request.form.keys())[6:]:
+        aim=aim+i+","
+      aim=aim.rstrip(",")
+      updateinfo(session["id"],age,gen,life,ht,wt,dis,aim,bmi,status)
+      return redirect("/settings")
+    return render_template("info.html", title="Fitx | Update", hd="Enter your updated data", comm="SAVE CHANGES")
+  else:
+    return redirect(r"/login")
+
+@app.route("/changepass",methods=['GET','POST'])
+def changepass():
+  if session:
+    if request.method == 'POST':
+      oldpass=request.form["OldPass"]
+      newpass=request.form["NewPass"]
+      if oldpass==session["pass"]:
+        if updatepass(session["id"],newpass):
+          session["pass"]=newpass
+          return redirect("/settings")
+        else:
+          flash("Could not update Password. Please try again!",'error')
+      else:
+        flash("Wrong Password! Please enter your correct existing password",'error')
+    return render_template("changepass.html")
+  else:
+    return redirect(r"/login")
+
+
 @app.route("/logout")
 def logout():
-  global userin
-  userin=""
+  l=list(session.keys())
+  for i in l:
+    session.pop(i,default=None)
   return redirect(r"/")
-
 
 if (__name__ == "__main__"):
   app.run(host="0.0.0.0", debug=True)

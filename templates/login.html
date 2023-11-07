@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
-  <title>Fitx | Login</title>
+  <title>Fitx | {%block title%}Login{%endblock%}</title>
 </head>
 
 <body>
@@ -25,22 +25,26 @@
       <form class="container" method="POST">
         <div class="top">
           <br>
-          <span class="ft">Have an account?</span>
-          <header>Login</header>
+          <span class="ft">{%block txt%}Have an account?{%endblock%}</span>
+          <header>{%block hd%}Login{%endblock%}</header>
           <br>
         </div>
         <div class="input-field">
+          {%block field1%}
           <input type="email" class="input" name="Email" placeholder="Email">
+          {%endblock%}
         </div>
         <br>
         <div class="input-field">
+          {%block field2%}
           <input type="password" class="input" name="Passw" placeholder="Password">
+          {%endblock%}
         </div>
         <br>
-        <button type="submit" class="cta1"><b>LOGIN</b></button>
+        <button type="submit" class="cta1"><b>{%block cta1%}LOGIN{%endblock%}</b></button>
         <br>
         <div class="three">
-          <a class="cta2" href="{{url_for('signup')}}">Dont have an account? <b class="bold"> Sign Up</b></a>
+          {%block cta2%}<a class="cta2" href="{{url_for('signup')}}">Dont have an account? <b class="bold"> Sign Up</b></a> {%endblock%}
         </div>
       </form>
     </div>

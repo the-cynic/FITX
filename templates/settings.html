@@ -2,5 +2,22 @@
 {%block title%}Fitx | Settings{%endblock%}
 {%block header%}<span>Sett</span>ings{%endblock%}
 {%block content%}
-
+<div class="sec1">
+  <div class="heading">ACCOUNT INFORMATION</div><br>
+  <p class="tip"><b>NAME: </b>{{user.capitalize()}} </p>
+  <p class="tip"><b>EMAIL: </b>{{email}}</p></b>
+  <p class="tip"><b>PASSWORD: ********</b></p>
+  <p class="tip"><b>AGE: </b>{{info[0]}} </p>
+  <p class="tip"><b>GENDER: </b>{{info[1]}} </p>
+  <p class="tip"><b>HEIGHT: </b>{{info[3]}} m</p>
+  <p class="tip"><b>WEIGHT: </b>{{info[4]}} kg</p>
+  <p class="tip"><b>BMI: </b>{{info[7]}}</p>
+  <p class="tip"><b>LIFESTYLE: </b>{{info[2]}}</p>
+  <p class="tip"><b>AILMENTS: </b>{{info[5]}}</p>
+  <div class="buttons">
+    <a href="/changeinfo"><button type="button">Edit Information</button></a>
+    <a href="/changepass"><button type="button">Change Password</button></a>
+    <a href="/delacc"><button type="button" class="impbutton">Delete Account</button></a>
+  </div>
+</div>
 {%endblock%}

@@ -15,7 +15,6 @@ body{
 
 .wrapper{
   display: flex;
-  /*position: relative;*/
 }
 
 .sidebar{
@@ -50,6 +49,7 @@ body{
   display: block;
 }
 
+
 .fas{
   width: 25px;
 }
@@ -57,7 +57,6 @@ body{
 .sidebar ul li:hover{
   cursor:pointer;
   border:2px solid #c2c6ff;
-  /*background-color:rgba(255, 255, 255, 0.5);*/
 }
 
 .sidebar .spotlight{
@@ -78,7 +77,7 @@ body{
   height:70px;
   display:flex;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
   color:#fff;
   font-size:15px;
   border-radius:5px;
@@ -92,22 +91,36 @@ body{
   width:50px;
   border-radius:7px;
   background:#000;
+  background-image:url("prof.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.sidebar .profile i{
+.sidebar .profile a{
   border:1px solid #fff;
+  border-top:2px;
+  border-bottom:2px;
   border-radius:2px;
   color:#fff;
-  padding:3px 3px;
+  height:26px;
+  width:25px;
 }
 
-.sidebar .profile i:hover{
+.sidebar .profile a:hover{
   border:2px solid #fff;
   cursor:pointer;
 }
 
 .sub{
   color:#d1d1d1;
+}
+
+.logout{
+  background:#fff;
+  padding-bottom:6px;
+  background-image:url("logout.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .wrapper .main_content{
@@ -121,9 +134,9 @@ body{
   padding-left:40px;
   padding-top:7px;
   color: #ccef7b;
-  height:70px;
+  height:80px;
   font-family:'Vina Sans', cursive;
-  font-size:40px;
+  font-size:50px;
 }
 
 .header span{
@@ -133,11 +146,70 @@ body{
 
 .main_content .info{
   color: #717171;
-  padding:30px;
+  padding:10px;
   border-top:2px solid #c2c6ff;
-  line-height: 25px;
 }
 
 .info div{
   margin-bottom: 20px;
+}
+
+.sec1{
+  background-color:#c2c6ff;
+  color:#000;
+  padding:20px;
+  font-size:20px;
+  border-radius:5px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom: 20px;
+}
+
+.sec2{
+  background-color:#ccef7b;
+  color:#000;
+  padding:20px;
+  font-size:20px;
+  border-radius:5px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom: 20px;
+}
+
+.heading{
+  font-size:25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.buttons{
+  margin:100px;
+  margin-top:20px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button{
+  padding:10px;
+  border-radius:5px;
+  height:40px;
+  width:250px;
+  background-color:#ccef7b;
+  color:#000
+  transition:0.5s ease;
+}
+
+button:hover{
+  background-color: #9cde02;
+  cursor:pointer;
+}
+
+.impbutton{
+  background-color:#ff5252;
+}
+
+.impbutton:hover{
+  background-color: #fb2d2d;
 }
